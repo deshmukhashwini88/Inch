@@ -1,0 +1,49 @@
+import tkinter as tk
+
+
+WINDOW_BG_COLOR = "#ffffff"
+INPUT_BG_COLOR = "#ffffff"
+INPUT_FG_COLOR = "#0d6efd"
+BUTTON_BG_COLOR = "#fd7e14"
+BUTTON_FG_COLOR = "#ffffff"
+OUTPUT_BG_COLOR = "#ffffff"
+OUTPUT_FG_COLOR = "#dc3545"
+FONT_STYLE = ("Arial", 32)
+
+
+def convert_inches_to_cm():
+ 
+    try:
+        inches = float(inches_entry.get())
+        cm = inches * 2.54
+        cm_text.delete(1.0, "end") 
+        cm_text.insert(1.0, f"{cm:.2f}")
+    except ValueError:
+        cm_text.delete(1.0, "end")
+        cm_text.insert(1.0, "Invalid input.")
+
+
+
+root = tk.Tk()
+root.title("Inches to cm Converter")
+root.geometry("550x300")
+root.configure(bg=WINDOW_BG_COLOR)
+
+
+inches_label = tk.Label(root, text="inches", bg=INPUT_BG_COLOR, fg=INPUT_FG_COLOR, font=FONT_STYLE)
+inches_entry = tk.Entry(root, width=10, bg=INPUT_BG_COLOR, fg=INPUT_FG_COLOR, font=FONT_STYLE)
+cm_label = tk.Label(root, text="cm", bg=OUTPUT_BG_COLOR, fg=OUTPUT_FG_COLOR, font=FONT_STYLE)
+
+cm_text = tk.Text(root, height=1, width=10, bg=OUTPUT_BG_COLOR, fg=OUTPUT_FG_COLOR, font=FONT_STYLE)
+convert_button = tk.Button(root, text="Convert", width=20, bg=BUTTON_BG_COLOR,
+                            fg=BUTTON_FG_COLOR, font=FONT_STYLE, command=convert_inches_to_cm)
+
+
+inches_label.grid(row=0, column=0, sticky="e", padx=10, pady=10)
+inches_entry.grid(row=0, column=1, sticky="w", padx=10, pady=10)
+cm_label.grid(row=2, column=0, sticky="e", padx=10, pady=10)
+cm_text.grid(row=2, column=1, sticky="w", padx=10, pady=10)
+convert_button.grid(row=1, column=0, columnspan=2, padx=10, pady=10)
+
+
+root.mainloop()
